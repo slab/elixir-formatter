@@ -14,9 +14,10 @@ defmodule ElixirFormatterWeb.Router do
   end
 
   scope "/", ElixirFormatterWeb do
-    pipe_through :browser # Use the default browser stack
+    # Use the default browser stack
+    pipe_through(:browser)
 
-    get "/", PageController, :index
+    get("/", PageController, :index)
   end
 
   # Other scopes may use custom stacks.

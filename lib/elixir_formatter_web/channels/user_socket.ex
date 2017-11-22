@@ -3,6 +3,7 @@ defmodule ElixirFormatterWeb.UserSocket do
 
   ## Channels
   # channel "room:*", ElixirFormatterWeb.RoomChannel
+  channel "formatter", ElixirFormatterWeb.FormatterChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
