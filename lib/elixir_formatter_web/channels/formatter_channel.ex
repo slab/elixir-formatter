@@ -22,9 +22,11 @@ defmodule ElixirFormatterWeb.FormatterChannel do
   #   {:noreply, socket}
   # end
 
-  def handle_in("format", %{"code" => code}, socket) do
+  def handle_in("format", %{"code" => code, "options" => options}, socket) do
+    options = parse_options(options)
+
     try do
-      result = code |> Code.format_string!() |> Enum.join()
+      result = code |> Code.format_string!(options) |> Enum.join()
       {:reply, {:ok, %{"result" => result}}, socket}
     rescue
       error ->
@@ -43,5 +45,27 @@ defmodule ElixirFormatterWeb.FormatterChannel do
   # Add authorization logic here as required.
   defp authorized?(_payload) do
     true
+  end
+
+  defp parse_options(options) do
+    locals = options["locals_without_parens"]
+
+    options =
+      if not is_nil(locals) do
+        locals =
+          locals
+          |> String.trim()
+          |> String.split("\n")
+          |> Enum.map(fn local ->
+               [name, arity] = String.split(local, ~r/:\s?/)
+               {String.to_atom(name), String.to_integer(arity)}
+             end)
+
+        Map.merge(options, %{"locals_without_parens" => locals})
+      else
+        options
+      end
+
+    options = Enum.map(options, fn {key, value} -> {String.to_atom(key), value} end)
   end
 end

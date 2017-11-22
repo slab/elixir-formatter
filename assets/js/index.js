@@ -48,8 +48,66 @@ function configCopyButton(selector, sourceEditor) {
   return clipboard;
 }
 
+function configOptions(selector, modalSelector) {
+  const button = document.querySelector(selector);
+  const modal = document.querySelector(modalSelector);
+  const inputs = modal.querySelectorAll("input, textarea");
+  const options = {};
+  let isOpen = null;
+
+  function updateOptions() {
+    for (const input of inputs) {
+      const { name, type, value } = input;
+
+      if (value === "") {
+        delete options[name];
+      } else {
+        options[name] = type === "number" ? parseInt(value, 10) : value;
+      }
+    }
+  }
+
+  function setIsOpen(newState) {
+    isOpen = newState;
+    modal.style.display = isOpen ? "block" : "none";
+    updateOptions();
+    updateResult();
+  }
+
+  button.addEventListener("click", () => {
+    setIsOpen(!isOpen);
+  });
+
+  document.addEventListener("click", e => {
+    const { target } = e;
+    if (
+      target !== button &&
+      target !== modal &&
+      !modal.contains(target) &&
+      isOpen
+    ) {
+      setIsOpen(false);
+    }
+  });
+
+  setIsOpen(false);
+  return options;
+}
+
 function formatError({ error, description, line }) {
   return `line ${line}:\n  ${description}`;
+}
+
+function updateResult() {
+  const code = inputEditor.getValue();
+  channel
+    .push("format", { code, options })
+    .receive("ok", ({ result }) => {
+      outputEditor.setValue(result, 1);
+    })
+    .receive("error", error => {
+      outputEditor.setValue(formatError(error), 1);
+    });
 }
 
 const channel = getChannel();
@@ -57,16 +115,10 @@ const inputEditor = getEditor("input");
 const outputEditor = getEditor("output");
 outputEditor.setReadOnly(true);
 
-inputEditor.getSession().on("change", e => {
-  const code = inputEditor.getValue();
-  channel
-    .push("format", { code })
-    .receive("ok", ({ result }) => {
-      outputEditor.setValue(result, 1);
-    })
-    .receive("error", error => {
-      outputEditor.setValue(formatError(error), 1);
-    });
+const options = configOptions("#options-button", "#options-window");
+
+inputEditor.getSession().on("change", () => {
+  updateResult();
 });
 
 configCopyButton("#copy-button", outputEditor);

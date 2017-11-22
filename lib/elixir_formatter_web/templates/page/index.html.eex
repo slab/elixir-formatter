@@ -2,6 +2,38 @@
   <header>
     <h1>Elixir Formatter</h1>
     <div id="toolbox">
+      <div id="options">
+        <button type="button" id="options-button">
+          Options
+        </button>
+        <div id="options-window">
+          <form>
+            <ul class="options-list">
+              <li>
+                <label><code>:line_length</code><input name="line_length" type="number" value="98" /></label>
+              </li>
+              <li>
+                <label><code>:rename_deprecated_at</code><input name="rename_deprecated_at" type="text" /></label>
+              </li>
+              <li>
+                <label>
+                  <code>:locals_without_parens</code>
+                  <div>
+                    <textarea name="locals_without_parens" placeholder="e.g. render: 2" rows="5"></textarea>
+                  </div>
+                </label>
+              </li>
+            </ul>
+          </form>
+          <footer>
+            <small>
+              <a href="https://hexdocs.pm/elixir/master/Code.html#format_string!/2-options" target="_blank">
+                Documentation
+              </a>
+            </small>
+          </footer>
+        </div>
+      </div>
       <button type="button" id="copy-button">
         Copy Result
       </button>

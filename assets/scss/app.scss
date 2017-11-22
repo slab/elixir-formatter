@@ -4,6 +4,7 @@
 $elixirColor: #4e2a8e;
 $uiFontFamily: Lato, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
   Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+$monospaceFontFamily: Inconsolata, "SF Mono", Menlo, Courier, monospace;
 
 html,
 body,
@@ -40,6 +41,10 @@ button {
   }
 }
 
+code {
+  font-family: $monospaceFontFamily;
+}
+
 #app {
   display: flex;
   flex-direction: column;
@@ -52,6 +57,65 @@ button {
     display: flex;
     justify-content: space-between;
     padding: 20px;
+  }
+}
+
+#toolbox {
+  display: flex;
+  margin-right: -10px;
+
+  > * {
+    margin-right: 10px;
+  }
+}
+
+#options {
+  position: relative;
+
+  #options-window {
+    background: white;
+    border-radius: 3px;
+    border: 1px solid #eee;
+    color: black;
+    display: none;
+    margin-top: 5px;
+    max-width: 80vw;
+    padding: 10px 15px;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    width: 300px;
+    z-index: 10;
+
+    footer {
+      text-align: right;
+    }
+  }
+
+  .options-list {
+    font-size: 80%;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    input,
+    textarea {
+      border: 1px solid #ddd;
+      border-radius: 3px;
+      font-family: $monospaceFontFamily;
+    }
+
+    input {
+      width: 40px;
+    }
+
+    code + input {
+      margin-left: 5px;
+    }
+
+    textarea {
+      width: 100%;
+    }
   }
 }
 
