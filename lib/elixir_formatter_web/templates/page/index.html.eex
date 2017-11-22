@@ -1,6 +1,11 @@
 <div id="app">
   <header>
     <h1>Elixir Formatter</h1>
+    <div id="toolbox">
+      <button type="button" id="copy-button">
+        Copy Result
+      </button>
+    </div>
   </header>
   <div id="editors">
     <div>

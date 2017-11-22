@@ -1,5 +1,7 @@
-import { Socket } from "phoenix";
 import ace from "brace";
+import Clipboard from "clipboard";
+import { Socket } from "phoenix";
+
 require("brace/mode/elixir");
 require("brace/theme/tomorrow");
 
@@ -16,8 +18,34 @@ function getChannel() {
 function getEditor(id) {
   const editor = ace.edit(id);
   editor.getSession().setMode("ace/mode/elixir");
+  editor.setOptions({
+    fontFamily: "Inconsolata, 'SF Code', Menlo, monospace",
+    fontSize: "14px"
+  });
 
   return editor;
+}
+
+function configCopyButton(selector, sourceEditor) {
+  const button = document.querySelector(selector);
+  const clipboard = new Clipboard(selector, {
+    text: () => sourceEditor.getValue()
+  });
+  const originalLabel = button.innerHTML;
+
+  const changeHandler = () => {
+    sourceEditor.off("change", changeHandler);
+    button.innerHTML = originalLabel;
+  };
+
+  clipboard.on("success", ({ trigger }) => {
+    const label = trigger.innerHTML;
+    trigger.innerText = "Copied!";
+
+    sourceEditor.on("change", changeHandler);
+  });
+
+  return clipboard;
 }
 
 function formatError({ error, description, line }) {
@@ -40,3 +68,5 @@ inputEditor.getSession().on("change", e => {
       outputEditor.setValue(formatError(error), 1);
     });
 });
+
+configCopyButton("#copy-button", outputEditor);
