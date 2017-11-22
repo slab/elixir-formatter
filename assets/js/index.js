@@ -20,6 +20,10 @@ function getEditor(id) {
   return editor;
 }
 
+function formatError({ error, description, line }) {
+  return `line ${line}:\n  ${description}`;
+}
+
 const channel = getChannel();
 const inputEditor = getEditor("input");
 const outputEditor = getEditor("output");
@@ -27,7 +31,12 @@ outputEditor.setReadOnly(true);
 
 inputEditor.getSession().on("change", e => {
   const code = inputEditor.getValue();
-  channel.push("format", { code }).receive("ok", ({ result }) => {
-    outputEditor.setValue(result, 1);
-  });
+  channel
+    .push("format", { code })
+    .receive("ok", ({ result }) => {
+      outputEditor.setValue(result, 1);
+    })
+    .receive("error", error => {
+      outputEditor.setValue(formatError(error), 1);
+    });
 });

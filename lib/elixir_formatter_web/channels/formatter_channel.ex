@@ -23,8 +23,21 @@ defmodule ElixirFormatterWeb.FormatterChannel do
   # end
 
   def handle_in("format", %{"code" => code}, socket) do
-    result = code |> Code.format_string!() |> Enum.join()
-    {:reply, {:ok, %{"result" => result}}, socket}
+    try do
+      result = code |> Code.format_string!() |> Enum.join()
+      {:reply, {:ok, %{"result" => result}}, socket}
+    rescue
+      error ->
+        {
+          :reply,
+          {:error, %{
+            "error" => error.__struct__ |> Module.split() |> Enum.join("."),
+            "description" => error.description,
+            "line" => error.line
+          }},
+          socket
+        }
+    end
   end
 
   # Add authorization logic here as required.
