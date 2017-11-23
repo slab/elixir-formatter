@@ -22,8 +22,8 @@ defmodule ElixirFormatterWeb.FormatterChannel do
   #   {:noreply, socket}
   # end
 
-  def handle_in("format", %{"code" => code, "options" => options}, socket) do
-    options = parse_options(options)
+  def handle_in("format", %{"code" => code} = payload, socket) do
+    options = parse_options(payload["options"] || %{})
 
     try do
       result = code |> Code.format_string!(options) |> Enum.join()
