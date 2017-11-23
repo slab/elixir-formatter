@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Lato:400,700|Inconsolata:400,700);
+@import url(https://fonts.googleapis.com/css?family=Lato:400,900|Inconsolata:400,700);
 @import "~normalize.css/normalize.css";
 
 $elixirColor: #4e2a8e;
@@ -24,6 +24,10 @@ h4,
 h5,
 h6 {
   margin: 0;
+}
+
+h1 {
+  font-weight: 900;
 }
 
 button {
@@ -57,6 +61,12 @@ code {
     display: flex;
     justify-content: space-between;
     padding: 20px;
+
+    h1 .version {
+      color: #eee;
+      font-size: 12px;
+      font-weight: normal;
+    }
   }
 }
 
@@ -93,7 +103,7 @@ code {
   }
 
   .options-list {
-    font-size: 80%;
+    font-size: 14px;
     list-style: none;
     margin: 0;
     padding: 0;

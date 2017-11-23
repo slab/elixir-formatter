@@ -1,6 +1,16 @@
 <div id="app">
   <header>
-    <h1>Elixir Formatter</h1>
+    <div>
+      <h1>Elixir Formatter
+        <span class="version">
+          <%= @elixir_version %>
+        </span>
+      </h1>
+      <div>
+        <code>mix format</code> in your browser.
+      </div>
+    </div>
+
     <div id="toolbox">
       <div id="options">
         <button type="button" id="options-button">
@@ -10,10 +20,16 @@
           <form>
             <ul class="options-list">
               <li>
-                <label><code>:line_length</code><input name="line_length" type="number" value="98" /></label>
+                <label>
+                  <code>:line_length</code>
+                  <input name="line_length" type="number" value="98" />
+                </label>
               </li>
               <li>
-                <label><code>:rename_deprecated_at</code><input name="rename_deprecated_at" type="text" /></label>
+                <label>
+                  <code>:rename_deprecated_at</code>
+                  <input name="rename_deprecated_at" type="text" />
+                </label>
               </li>
               <li>
                 <label>
