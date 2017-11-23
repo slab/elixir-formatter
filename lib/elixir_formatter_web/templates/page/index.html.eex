@@ -1,12 +1,12 @@
 <div id="app">
   <header>
-    <div>
+    <div id="title">
       <h1>Elixir Formatter
         <span class="version">
           <%= @elixir_version %>
         </span>
       </h1>
-      <div>
+      <div id="description">
         <code>mix format</code> in your browser.
       </div>
     </div>
@@ -52,17 +52,13 @@
         </div>
       </div>
       <button type="button" id="copy-button" class="button-link">
-        Copy Result
+        Copy 
       </button>
     </div>
   </header>
   <div id="editors">
-    <div>
-      <div id="input" class="code-input"></div>
-    </div>
-    <div>
-      <div id="output" class="code-input"></div>
-    </div>
+    <div id="input" class="code-input"></div>
+    <div id="output" class="code-input"></div>
   </div>
   <footer>
     Made with 💜 by <a href="https://slab.com">Slab</a>
