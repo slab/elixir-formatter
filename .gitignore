@@ -15,5 +15,10 @@ erl_crash.dump
 # variables.
 /config/*.secret.exs
 
+# Build artifacts
+/priv/static/js
+/priv/static/css
+
 # JavaScript
 node_modules
+
