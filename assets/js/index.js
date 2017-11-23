@@ -4,6 +4,7 @@ import "brace/theme/tomorrow";
 
 import Clipboard from "clipboard";
 import { Socket } from "phoenix";
+import sample from "./sample_code";
 
 function getChannel() {
   const socket = new Socket("/socket");
@@ -124,3 +125,4 @@ inputEditor.getSession().on("change", () => {
 });
 
 configCopyButton("#copy-button", outputEditor);
+inputEditor.setValue(sample, 1);
