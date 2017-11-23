@@ -18,6 +18,7 @@
         </button>
         <div id="options-window">
           <form>
+            <h3>Formatter Options</h3>
             <ul class="options-list">
               <li>
                 <label>
