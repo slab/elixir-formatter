@@ -45,6 +45,18 @@ button {
   }
 }
 
+button.button-link {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.85);
+  transition: all 0.25s ease;
+  padding: 0;
+
+  &:hover {
+    color: rgba(255, 255, 255, 1);
+  }
+}
+
 code {
   font-family: $monospaceFontFamily;
 }
@@ -72,10 +84,10 @@ code {
 
 #toolbox {
   display: flex;
-  margin-right: -10px;
+  margin-right: -20px;
 
   > * {
-    margin-right: 10px;
+    margin-right: 20px;
   }
 }
 

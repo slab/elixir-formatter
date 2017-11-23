@@ -13,7 +13,7 @@
 
     <div id="toolbox">
       <div id="options">
-        <button type="button" id="options-button">
+        <button type="button" id="options-button" class="button-link">
           Options
         </button>
         <div id="options-window">
@@ -50,7 +50,7 @@
           </footer>
         </div>
       </div>
-      <button type="button" id="copy-button">
+      <button type="button" id="copy-button" class="button-link">
         Copy Result
       </button>
     </div>

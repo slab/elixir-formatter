@@ -38,10 +38,12 @@ function configCopyButton(selector, sourceEditor) {
   const changeHandler = () => {
     sourceEditor.off("change", changeHandler);
     button.innerHTML = originalLabel;
+    button.style.width = "auto";
   };
 
   clipboard.on("success", ({ trigger }) => {
     const label = trigger.innerHTML;
+    trigger.style.width = trigger.clientWidth + "px";
     trigger.innerText = "Copied!";
 
     sourceEditor.on("change", changeHandler);
