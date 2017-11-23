@@ -95,7 +95,8 @@ function configOptions(selector, modalSelector) {
 }
 
 function formatError({ error, description, line }) {
-  return `line ${line}:\n  ${description}`;
+  const lineInfo = line ? `line ${line}:\n  ` : "";
+  return `${lineInfo}${error}: ${description}`;
 }
 
 function updateResult() {

@@ -23,22 +23,20 @@ defmodule ElixirFormatterWeb.FormatterChannel do
   # end
 
   def handle_in("format", %{"code" => code} = payload, socket) do
-    options = parse_options(payload["options"] || %{})
-
     try do
-      result = code |> Code.format_string!(options) |> Enum.join()
-      {:reply, {:ok, %{"result" => result}}, socket}
+      parse_options(payload["options"] || %{})
     rescue
       error ->
         {
           :reply,
           {:error, %{
-            "error" => error.__struct__ |> Module.split() |> Enum.join("."),
-            "description" => error.description,
-            "line" => error.line
+            "error" => "Unknown",
+            "description" => "Could not parse the `:locals_without_parens` options."
           }},
           socket
         }
+    else
+      options -> handle_formatting(socket, code, options)
     end
   end
 
@@ -67,5 +65,23 @@ defmodule ElixirFormatterWeb.FormatterChannel do
       end
 
     options = Enum.map(options, fn {key, value} -> {String.to_atom(key), value} end)
+  end
+
+  defp handle_formatting(socket, code, options) do
+    try do
+      result = code |> Code.format_string!(options) |> Enum.join()
+      {:reply, {:ok, %{"result" => result}}, socket}
+    rescue
+      error in [SyntaxError, TokenMissingError, CompileError] ->
+        {
+          :reply,
+          {:error, %{
+            "error" => error.__struct__ |> Module.split() |> Enum.join("."),
+            "description" => error.description,
+            "line" => error.line
+          }},
+          socket
+        }
+    end
   end
 end
