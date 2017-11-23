@@ -64,4 +64,7 @@
       <div id="output" class="code-input"></div>
     </div>
   </div>
+  <footer>
+    Made with 💜 by <a href="https://slab.com">Slab</a>
+  </footer>
 </div>
