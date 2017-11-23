@@ -1,9 +1,9 @@
 import ace from "brace";
+import "brace/mode/elixir";
+import "brace/theme/tomorrow";
+
 import Clipboard from "clipboard";
 import { Socket } from "phoenix";
-
-require("brace/mode/elixir");
-require("brace/theme/tomorrow");
 
 function getChannel() {
   const socket = new Socket("/socket");
@@ -18,6 +18,7 @@ function getChannel() {
 function getEditor(id) {
   const editor = ace.edit(id);
   editor.getSession().setMode("ace/mode/elixir");
+  editor.setTheme("ace/theme/tomorrow");
   editor.setOptions({
     fontFamily: "Inconsolata, 'SF Code', Menlo, monospace",
     fontSize: "14px"
