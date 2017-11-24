@@ -26,7 +26,7 @@ defmodule ElixirFormatterWeb.FormatterChannel do
     try do
       parse_options(payload["options"] || %{})
     rescue
-      error ->
+      _ ->
         {
           :reply,
           {:error, %{
@@ -53,7 +53,7 @@ defmodule ElixirFormatterWeb.FormatterChannel do
         locals =
           locals
           |> String.trim()
-          |> String.split("\n")
+          |> String.split(~r(,?\n), trim: true)
           |> Enum.map(fn local ->
                [name, arity] = String.split(local, ~r/:\s?/)
                {String.to_atom(name), String.to_integer(arity)}
@@ -64,7 +64,7 @@ defmodule ElixirFormatterWeb.FormatterChannel do
         options
       end
 
-    options = Enum.map(options, fn {key, value} -> {String.to_atom(key), value} end)
+    Enum.map(options, fn {key, value} -> {String.to_atom(key), value} end)
   end
 
   defp handle_formatting(socket, code, options) do
