@@ -16,6 +16,18 @@
 
     <title>Elixir Formatter</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+
+    <% ga_id = Application.get_env(:elixir_formatter, :ga)[:id] %>
+    <%= if ga_id do %>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=<%= ga_id %>"></script>
+      <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', '<%= ga_id %>');
+    </script>
+    <% end %>
   </head>
 
   <body>

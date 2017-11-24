@@ -21,6 +21,9 @@ config :elixir_formatter, ElixirFormatterWeb.Endpoint,
 # Do not print debug messages in production
 config :logger, level: :info
 
+# Google Analytics
+config :elixir_formatter, :ga, id: "UA-84928209-3"
+
 # ## SSL Support
 #
 # To get SSL working, you will need to add the `https` key
