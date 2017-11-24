@@ -50,11 +50,22 @@ function configCopyButton(selector, sourceEditor) {
   return clipboard;
 }
 
+function setFormValues(formContainer, options) {
+  for (const key in options) {
+    const input = formContainer.querySelector(`[name=${key}]`);
+
+    if (input) {
+      input.value = options[key];
+    }
+  }
+}
+
 function configOptions(selector, modalSelector) {
+  const STORAGE_KEY = "formatterOptions";
   const button = document.querySelector(selector);
   const modal = document.querySelector(modalSelector);
   const inputs = modal.querySelectorAll("input, textarea");
-  const options = {};
+  const options = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
   let isOpen = null;
 
   function updateOptions() {
@@ -66,6 +77,8 @@ function configOptions(selector, modalSelector) {
       } else {
         options[name] = type === "number" ? parseInt(value, 10) : value;
       }
+
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(options));
     }
   }
 
@@ -92,6 +105,7 @@ function configOptions(selector, modalSelector) {
     }
   });
 
+  setFormValues(modal, options);
   setIsOpen(false);
   return options;
 }
