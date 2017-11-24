@@ -23,7 +23,7 @@
               <li>
                 <label>
                   <code>:line_length</code>
-                  <input name="line_length" type="number" value="98" />
+                  <input name="line_length" type="number" value="98" min="1" />
                 </label>
               </li>
               <li>
