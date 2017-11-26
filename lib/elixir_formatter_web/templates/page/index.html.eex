@@ -61,6 +61,14 @@
     <div id="output" class="code-input"></div>
   </div>
   <footer>
-    Made with 💜 by <a href="https://slab.com">Slab</a>
+    <div>
+      <ul class="flat-list">
+        <li><a href="https://github.com/slab/elixir-formatter">Source</a></li>
+        <li><a href="https://github.com/slab/elixir-formatter/issues/new">Report Issues</a></li>
+      </ul>
+    </div>
+    <div>
+      Made with 💜 by <a href="https://slab.com">Slab</a>
+    </div>
   </footer>
 </div>

@@ -22,6 +22,17 @@ body {
   font-family: $uiFontFamily;
 }
 
+a,
+a:visited,
+a:active {
+  color: $elixirColor;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 h1,
 h2,
 h3,
@@ -73,6 +84,24 @@ pre {
   font-family: $monospaceFontFamily;
 }
 
+.flat-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    float: left;
+
+    &:not(:last-child) {
+      &:after {
+        display: inline;
+        content: "\00b7";
+        margin: 0 5px;
+      }
+    }
+  }
+}
+
 #app {
   display: flex;
   flex-direction: column;
@@ -109,9 +138,11 @@ pre {
 
   > footer {
     background-color: #eee;
+    border-top: 1px solid #ccc;
+    display: flex;
     font-size: 12px;
     padding: 10px;
-    text-align: right;
+    justify-content: space-between;
   }
 }
 
