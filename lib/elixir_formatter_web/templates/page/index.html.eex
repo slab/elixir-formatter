@@ -63,12 +63,12 @@
   <footer>
     <div>
       <ul class="flat-list">
-        <li><a href="https://github.com/slab/elixir-formatter">Source</a></li>
-        <li><a href="https://github.com/slab/elixir-formatter/issues/new">Report Issues</a></li>
+        <li><a href="https://github.com/slab/elixir-formatter" target="_blank">Source</a></li>
+        <li><a href="https://github.com/slab/elixir-formatter/issues/new" target="_blank">Report Issues</a></li>
       </ul>
     </div>
     <div>
-      Made with 💜 by <a href="https://slab.com">Slab</a>
+      Made with 💜 by <a href="https://slab.com" target="_blank">Slab</a>
     </div>
   </footer>
 </div>
