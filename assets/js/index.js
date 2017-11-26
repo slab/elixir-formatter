@@ -41,7 +41,6 @@ function configCopyButton(selector, sourceEditor) {
   };
 
   clipboard.on("success", ({ trigger }) => {
-    const label = trigger.innerHTML;
     trigger.innerText = "Copied!";
 
     sourceEditor.on("change", changeHandler);
