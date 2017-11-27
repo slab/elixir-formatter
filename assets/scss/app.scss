@@ -12,10 +12,9 @@ $mobileBreakpoint: 576px;
 }
 
 html,
-body,
-.container {
-  min-height: 100vh;
+body {
   margin: 0;
+  padding: 0;
 }
 
 body {
@@ -105,7 +104,7 @@ pre {
 #app {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  height: 100vh;
 
   header {
     align-items: center;
@@ -148,9 +147,8 @@ pre {
 
 #toolbox {
   display: flex;
-  margin-right: -20px;
 
-  > * {
+  > *:not(:last-child) {
     margin-right: 20px;
   }
 }
