@@ -24,6 +24,7 @@ function getEditor(id) {
     fontFamily: "Inconsolata, 'SF Code', Menlo, monospace",
     fontSize: "14px"
   });
+  editor.$blockScrolling = Infinity;
 
   return editor;
 }
