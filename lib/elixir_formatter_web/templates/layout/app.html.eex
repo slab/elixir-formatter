@@ -2,20 +2,32 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    <title>Elixir Formatter</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="description" content="Format Elixir code in your browser">
+    <meta name="theme-color" content="#f8f3ff">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Elixir Formatter">
+    <meta property="og:description" content="Format Elixir code in your browser">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="<%= static_url(@conn, "/images/logo-256.png") %>">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Elixir Formatter.">
+    <meta name="twitter:description" content="Format Elixir code in your browser">
+    <meta name="twitter:image" content="<%= static_url(@conn, "/images/logo-256.png") %>" />
+
+    <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
 
     <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/images/favicons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/images/favicons/favicon-16x16.png">
     <link rel="manifest" href="/manifest.json">
     <link rel="mask-icon" href="/images/favicons/safari-pinned-tab.svg" color="#4e2a8e">
-    <meta name="theme-color" content="#f8f3ff">
-
-    <title>Elixir Formatter</title>
-    <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
 
     <% ga_id = Application.get_env(:elixir_formatter, :ga)[:id] %>
     <%= if ga_id do %>
