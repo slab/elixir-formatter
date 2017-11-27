@@ -1,4 +1,4 @@
-# Elixir Formatter
+# [Elixir Formatter](https://elixirformatter.com)
 
 `mix format` in your browser.
 
