@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="description" content="Format Elixir code in your browser">
+    <meta name="description" content="Use Elixir 1.6 formatter right in your browser.">
     <meta name="theme-color" content="#f8f3ff">
 
     <!-- Open Graph -->
