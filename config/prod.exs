@@ -16,7 +16,8 @@ use Mix.Config
 config :elixir_formatter, ElixirFormatterWeb.Endpoint,
   load_from_system_env: true,
   url: [scheme: "https", host: "elixirformatter.com", port: 443],
-  cache_static_manifest: "priv/static/cache_manifest.json"
+  cache_static_manifest: "priv/static/cache_manifest.json",
+  check_origin: ["https://elixirformatter.com", "https://elixir-formatter.cove.sh"]
 
 # Do not print debug messages in production
 config :logger, level: :info
