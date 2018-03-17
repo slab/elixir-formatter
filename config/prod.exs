@@ -17,7 +17,7 @@ config :elixir_formatter, ElixirFormatterWeb.Endpoint,
   load_from_system_env: true,
   url: [scheme: "https", host: "elixirformatter.com", port: 443],
   cache_static_manifest: "priv/static/cache_manifest.json",
-  check_origin: ["https://elixirformatter.com", "https://elixir-formatter.render.to"]
+  check_origin: ["https://elixirformatter.com", "https://elixir-formatter.render.com"]
 
 # Do not print debug messages in production
 config :logger, level: :info
