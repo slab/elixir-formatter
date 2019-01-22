@@ -5,6 +5,8 @@
 # is restricted to this project.
 use Mix.Config
 
+config :phoenix, :json_library, Poison
+
 # Configures the endpoint
 config :elixir_formatter, ElixirFormatterWeb.Endpoint,
   url: [host: "localhost"],
