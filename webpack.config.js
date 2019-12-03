@@ -1,12 +1,13 @@
 const path = require("path");
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
 const webpack = require("webpack");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const env = process.env.MIX_ENV || "dev";
 const isProduction = env === "prod";
 
 const config = {
+  mode: isProduction ? "production" : "development",
   entry: {
     app: ["./assets/js/index.js", "./assets/scss/app.scss"]
   },
@@ -28,26 +29,24 @@ const config = {
       {
         test: /\.scss$/,
         include: path.resolve(__dirname, "assets/scss"),
-        use: ExtractTextPlugin.extract({
-          fallback: "style-loader",
-          use: [
-            {
-              loader: "css-loader",
-              options: {
-                minimize: true,
-                sourceMap: true
-              }
-            },
-            {
-              loader: "sass-loader"
-            }
-          ]
-        })
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: { hmr: !isProduction }
+          },
+          {
+            loader: "css-loader",
+            options: { sourceMap: true }
+          },
+          {
+            loader: "sass-loader"
+          }
+        ]
       }
     ]
   },
   plugins: [
-    new ExtractTextPlugin({
+    new MiniCssExtractPlugin({
       filename: "css/[name].css"
     })
   ]
